@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,18 @@ public class UserResource {
     public User userById(@PathVariable String id) {
         return userController.findById(id);
     }
+
+    @GetMapping("{id}/email")
+    public Map<String, String> email(@PathVariable("id") String id) {
+        return Collections.singletonMap(id, userController.findById(id).getEmail());
+    }
+
+    @PostMapping
+    public User addUser(@RequestBody User user) {
+        userController.addUser(user);
+        return user;
+    }
+
 /*
     @GetMapping("/{id}")
     public User getUser(@PathVariable("id") String id) {

@@ -24,6 +24,12 @@ public class UserController {
         else return null;
     }
 
+    public void addUser(User user) {
+        usersDAO.save(user);
+    }
+
+
+
 /*
     public User getUser(String id) {
         return usersDAO.findById(Integer.valueOf(id));
