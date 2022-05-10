@@ -40,6 +40,21 @@ public class UserResource {
         return user;
     }
 
+    @DeleteMapping("{id}")
+    public void removeUser(@PathVariable("id") String id) {
+        userController.removeUser(id);
+    }
+
+    @PutMapping("{id}")
+    public void replaceUser(@PathVariable("id") String id, @RequestBody User user) {
+        User nuevoUser = userController.findById(id);
+        nuevoUser.setId(user.getId());
+        nuevoUser.setFullName(user.getFullName());
+        nuevoUser.setEmail(user.getEmail());
+        nuevoUser.setPassword(user.getPassword());
+        userController.replaceUser(user);
+    }
+
 /*
     @GetMapping("/{id}")
     public User getUser(@PathVariable("id") String id) {

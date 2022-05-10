@@ -17,7 +17,6 @@ public class UserController {
         return usersDAO.findAll();
     }
 
-
     public User findById(String id) {
         Optional<User> user = usersDAO.findById(Integer.valueOf(id));
         if (user.isPresent()) return user.get();
@@ -25,6 +24,14 @@ public class UserController {
     }
 
     public void addUser(User user) {
+        usersDAO.save(user);
+    }
+
+    public void removeUser(String id) {
+        usersDAO.deleteById(Integer.valueOf(id));
+    }
+
+    public void replaceUser(User user) {
         usersDAO.save(user);
     }
 
